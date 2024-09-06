@@ -44,13 +44,7 @@ The project uses a ResNet50 model pretrained on ImageNet, with the final fully c
 
 1. Ensure you have all the required libraries installed.
 2. Update the `train_path` and `test_path` variables in the script to point to your data directories.
-3. Run the script:
-
-   ```
-   python main.py
-   ```
-
-4. The script will train the model, save weights after each epoch, and perform evaluation on the test set.
+3. The script will train the model, save weights after each epoch, and perform evaluation on the test set.
 
 ## Model Training
 
