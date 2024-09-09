@@ -1,25 +1,51 @@
-# Alzheimer's MRI Classification Project
+# Alzheimer's Disease Stage Classification using ResNet-50
 
-This project implements a deep learning model to classify Alzheimer's disease stages using MRI (Magnetic Resonance Imaging) images.
+This repository contains code for classifying Alzheimer's disease stages from MRI images using a fine-tuned ResNet-50 model. The project aims to provide an effective deep learning pipeline for this task.
+
+## Table of Contents
+
+- [Codebase Summary](#codebase-summary)
+- [Dataset](#dataset)
+- [Model Architecture](#model-architecture)
+- [Requirements](#requirements)
+- [Project Structure](#project-structure)
+- [Usage](#usage)
+- [Model Training](#model-training)
+- [Evaluation](#evaluation)
+- [References](#references)
+- [License](#license)
+
+## Codebase Summary: 
+
+This codebase implements a deep learning model for classifying Alzheimer's disease stages based on MRI images. It leverages the pre-trained ResNet-50 architecture, fine-tuning it for multi-class classification. 
+
+**Key Features:**
+
+- **Modular Design:** The codebase is structured into two main components: a Jupyter notebook (`notebook.ipynb`) for development and experimentation
+- **Pre-trained Model:** Utilizes a ResNet-50 model pre-trained on ImageNet, significantly reducing training time and potentially improving performance.
+- **Comprehensive Evaluation:** Evaluates the model using various metrics, including accuracy, precision, recall, F1-score, and a confusion matrix, providing a thorough understanding of its performance.
+- **Visualization:** Generates a heatmap of the confusion matrix, offering a clear visual representation of the model's classification capabilities for each disease stage.
+- **Well-documented:** Contains detailed comments and explanations throughout the codebase, enhancing readability and understanding.
 
 ## Dataset
 
 The project uses the Alzheimer MRI Preprocessed Dataset (128 x 128) from Kaggle. Key details about the dataset:
 
-- Consists of preprocessed MRI images resized to 128 x 128 pixels
-- Contains 6400 MRI images in total
-- Divided into four classes:
-  1. Mild Demented (896 images)
-  2. Moderate Demented (64 images)
-  3. Non Demented (3200 images)
-  4. Very Mild Demented (2240 images)
-- Data collected from various websites, hospitals, and public repositories
+- **Source:** [https://www.kaggle.com/datasets/jboysen/mri-and-alzheimers](https://www.kaggle.com/datasets/jboysen/mri-and-alzheimers)
+- **Image Size:** Preprocessed MRI images resized to 128 x 128 pixels.
+- **Total Images:** 6400 MRI images.
+- **Classes:**
+    - Mild Demented (896 images)
+    - Moderate Demented (64 images)
+    - Non Demented (3200 images)
+    - Very Mild Demented (2240 images)
+- **Data Origin:**  Collected from various websites, hospitals, and public repositories.
 
-The main goal of this dataset is to facilitate the development of accurate frameworks for Alzheimer's disease classification.
+The primary goal of this dataset is to facilitate the development of accurate frameworks for Alzheimer's disease classification.
 
 ## Model Architecture
 
-The project uses a ResNet50 model pretrained on ImageNet, with the final fully connected layer modified to match the number of classes in our dataset.
+This project employs a ResNet-50 model pre-trained on the ImageNet dataset. The final fully connected layer of the ResNet-50 model is modified to accommodate the four classes present in our dataset. This approach leverages the rich feature representations learned by ResNet-50 on a large-scale image recognition task, enabling effective transfer learning for Alzheimer's disease stage classification.
 
 ## Requirements
 
@@ -33,34 +59,43 @@ The project uses a ResNet50 model pretrained on ImageNet, with the final fully c
 ## Project Structure
 
 ```
-├── train/                  # Training data directory
-├── test/                   # Test data directory
-├── model_weights/          # Directory to save model weights
-├── main.py                 # Main script for training and evaluation
-└── README.md
+├── notebook.ipynb       # Jupyter notebook for development and visualization
+├── train/               # Training data directory
+├── test/                # Test data directory
+└── model_weights/       # Directory to save model weights
 ```
 
 ## Usage
 
-1. Ensure you have all the required libraries installed.
-2. Update the `train_path` and `test_path` variables in the script to point to your data directories.
-3. The script will train the model, save weights after each epoch, and perform evaluation on the test set.
+1. **Data Preparation:**
+   - Download the Alzheimer MRI Preprocessed Dataset (128 x 128) from Kaggle.
+   - Create `train/` and `test/` directories within the project folder.
+   - Organize your dataset into these directories, maintaining the four class subfolders (Mild Demented, Moderate Demented, Non Demented, Very Mild Demented).
+
+2. **Training and Evaluation:**
+
+   - **Option 1: Using the Jupyter Notebook (`notebook.ipynb`)**
+     - Open the notebook in a Jupyter environment (e.g., Jupyter Notebook, JupyterLab).
+     - Execute the code cells sequentially to load data, define the model, train, evaluate, and visualize results.
+   - **Option 2: Using the Python script (`main.py`)**
+     - Update the `train_path` and `test_path` variables within the script to point to your data directories.
+     - The script will train the model, save weights after each epoch, and perform evaluation on the test set.
 
 ## Model Training
 
-- Batch size: 45
-- Number of epochs: 25
-- Learning rate: 0.0001
-- Optimizer: Adam
-- Loss function: Cross Entropy Loss
+- **Batch size:** 45
+- **Number of epochs:** 25 
+- **Learning rate:** 0.0001
+- **Optimizer:** Adam
+- **Loss function:** Cross Entropy Loss
 
 ## Evaluation
 
 The script performs the following evaluations:
 
-1. Prints a classification report with precision, recall, and F1-score for each class
-2. Generates and displays a confusion matrix
-3. Calculates and prints the overall accuracy
+1. **Classification Report:** Prints a classification report containing precision, recall, and F1-score for each class.
+2. **Confusion Matrix:** Generates and displays a confusion matrix, providing a visual representation of the model's classification performance.
+3. **Accuracy:** Calculates and prints the overall accuracy of the model.
 
 ## References
 
@@ -71,9 +106,3 @@ The script performs the following evaluations:
 5. Alzheimer's Disease and Healthy Aging Data: https://catalog.data.gov/dataset/alzheimers-disease-and-healthy-aging-data
 6. Nature Article on Alzheimer's: https://www.nature.com/articles/s41598-020-79243-9
 7. EPAD Dataset on Alzheimer's Disease Workbench: https://cordis.europa.eu/article/id/429468-the-final-epad-dataset-is-now-available-on-the-alzheimer-s-disease-workbench
-
-## Note
-
-This project is for educational and research purposes. Always consult with healthcare professionals for medical diagnoses and treatment.
-
-Currently improving the model and making sure model is actually accurate :)
